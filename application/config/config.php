@@ -1,5 +1,25 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+function __autoload($classname) {
+	if (strpos($classname, 'CI_') !== 0) {
+		$file = APPPATH . 'core/' . $classname . '.php';
+		if (file_exists($file) && is_file($file)) {
+			@include_once($file);
+		}
+		elseif(file_exists($file = APPPATH .'libraries/'.$classname.'.php')&& is_file($file))
+		{
+			@include_once($file);
+		}
+		elseif(file_exists($file = APPPATH .'controllers/'.$classname .'.php')&& is_file($file))
+		{
+			@include_once($file);
+		}
+	}
+	elseif(file_exists($file = APPPATH .'controllers/Admin/'.$classname .'.php')&& is_file($file))
+	{
+		@include_once($file);
+	}
+}
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -14,7 +34,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= '';
+$config['base_url']	= 'http://localhost/DATN/';
 
 /*
 |--------------------------------------------------------------------------
@@ -224,7 +244,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'e1R07hknJ65OB32YZN5e5Y2y1BAjBJa';
 
 /*
 |--------------------------------------------------------------------------
