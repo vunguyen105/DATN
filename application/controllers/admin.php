@@ -3,6 +3,7 @@ class admin extends Backend_Controller {
 	public $new_nested_set;
 	function __construct() {
 		parent::__construct ();
+		
 		$this->load->library ( 'session' );
 	}
 	public function index() {
@@ -10,4 +11,6 @@ class admin extends Backend_Controller {
 		//$this->template->write_view ( 'content', 'users/view_user', '', true );
 		$this->template->render ();
 	}
+	
+	
 }

@@ -10,7 +10,7 @@ class Home_Controller extends MY_Controller{
     }  
     
      public function is_login(){
-        $is_logged = $this->session->userdata('is_logged');
+        $is_logged = $this->session->userdata('loggedin');
         if(isset($is_logged) && $is_logged == true)
             return true;
         else
