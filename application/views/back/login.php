@@ -38,7 +38,7 @@
 		<!-- BEGIN LOGIN FORM -->
 		<form class="form-vertical login-form" action="<?php echo base_url()?>backend/login" method="post">
 			<h3 class="form-title">Login to your account</h3>
-			<?php if(is_success_flashdata($this->session->flashdata('error'))) { ;?>
+			<?php if(is_error_flashdata($this->session->flashdata('error'))) { ;?>
 			<div class="alert alert-error">
 				<span><?php echo $this->session->flashdata('error');?></span>
 			</div>

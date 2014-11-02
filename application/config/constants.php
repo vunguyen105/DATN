@@ -1,5 +1,9 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+// Constants paginator
+define('PERPAGA', 1);
+define('numberOfPages', 3);
+
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
