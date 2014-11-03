@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 02, 2014 at 05:16 PM
+-- Generation Time: Nov 03, 2014 at 09:55 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -73,12 +73,12 @@ INSERT INTO `Categories` (`id`, `name`, `lft`, `rgt`, `parent_id`) VALUES
 (32, 'themmmmmmmmmmmmmmmmm', 0, 7, 0),
 (36, 'mới tinh', 27, 28, 0),
 (61, 'aaaaaaaaa', 29, 34, 0),
-(62, 'bbbbbbbbbbbbbbbbbbbbb', 30, 33, 61),
+(62, 'bbbbbbbbbbbbbbbbbbbbb', 31, 32, 67),
 (63, 'x', 1, 4, 32),
 (64, 'nguyen', 2, 3, 63),
 (65, 'nguyen1', 5, 6, 64),
 (66, 'dddd', 35, 36, 0),
-(67, 'huyen', 31, 32, 62);
+(67, 'huyen', 30, 33, 61);
 
 -- --------------------------------------------------------
 
@@ -213,8 +213,8 @@ CREATE TABLE IF NOT EXISTS `Product` (
 INSERT INTO `Product` (`ProID`, `CateID`, `ProName`, `ProPicName`, `ProPrice`, `ProStt`, `ProQuantity`, `ProDesc`, `ProStt2`) VALUES
 (0, 5, 'Áo thun', 'abc.jpg', 90, 1, NULL, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1),
 (1, 1, 'Quần bò', 'sdsdd.jpg', 100, 1, 0, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1),
-(2, 1, 'áo thun', '', 50, 1, 1, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1),
-(3, 1, 'Quần bò', 'sdsdd.jpg', 100, 1, 1, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1);
+(22, 10, 'eqweqwe', 'e', 0, 1, 11, 'dấd', 1),
+(24, 10, 'eqweqwe', 'e', 0, 1, 11, 'dấd', 1);
 
 -- --------------------------------------------------------
 
