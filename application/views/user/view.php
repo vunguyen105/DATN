@@ -1,83 +1,66 @@
 <script src="<?php echo base_url(); ?>assets/dialog/run_prettify.js"></script>
-<link href="<?php echo base_url(); ?>assets/dialog/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
+<link href="<?php echo base_url(); ?>assets/dialog/bootstrap-dialog.css"
+	rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url(); ?>assets/dialog/bootstrap-dialog.js"></script>
 <div class="row-fluid">
-    <div class="span12">
-        <!-- BEGIN EXAMPLE TABLE PORTLET-->
-        <div class="portlet box light-grey">
-            <div class="portlet-title">
-                <div class="caption"><i class="icon-globe"></i>Managed Table</div>
-                <div class="tools">
-                    <a href="javascript:;" class="collapse"></a>
-                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
-                    <a href="javascript:;" class="remove"></a>
-                </div>
-            </div>
-            <div class="portlet-body">
-                <div class="table-toolbar">
-                    <div class="btn-group">
-                        <button id="create_user" class="btn green">
-                            Add New User<i class="icon-plus"></i>
-                        </button>
-                    </div>
-                    <div class="btn-group pull-right">
-                        <button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-                        </button>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="#">Print</a></li>
-                            <li><a href="#">Save as PDF</a></li>
-                            <li><a href="#">Export to Excel</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <?php if (!empty($users)) { ?>
-                <div id="content">
-                    <table class="table table-striped table-bordered table-hover" id="table_user">
-                        <thead>
-                            <tr>
-                                <th style="width:8px;"><input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" /></th>
-                                <th>Tên tài khoản</th>
-                                <th class="hidden-480">Email</th>
-                                <th class="hidden-480">Ngày tạo</th>
-                                <th class="hidden-480">Tên</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <?php
-                                $i = 1;
-                                foreach ($users as $key => $value):
-                                    ?>
-                            <tr class="odd gradeX">
-                                <td style="width:8px;"><input type="checkbox" class="checkboxes" value="1" /></td>
-                                <td style="width:8px;"><?php echo $value["username"]; ?></td>
-                                <td class="hidden-480"><?php echo $value["email"]; ?></td>
-                                <td class="center hidden-480"><?php echo $value["created"]; ?></td>
-                                <td ><span class="label label-success"><?php echo $value["lastname"]; ?></span></td>
-                                <td data-id="<?php echo $value['id']?>">
-                                    <span class="icon-edit"></span>
-                                </td>
-                                <td data-id="<?php echo $value['id']?>">
-                                    <span class="icon-trash"></span>
-                                </td>
-                            </tr>
-                                <?php endforeach; ?>
-                    </table>
-                    <div class="row-fluid">
-                        <div class="" id="ajax_paging">
-                            <span style="float: right;" class="dataTables_info" id="sample_1_info">Có tất cả <?php echo $count; ?> dòng dữ liệu</span>
+	<div class="span12">
+	<?php if (!empty($products)) { ?>
+		<!-- BEGIN SAMPLE TABLE PORTLET-->
+		<div class="portlet box green">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="icon-cogs"></i>Flip Scroll
+				</div>
+				<div class="tools">
+					<a href="javascript:;" class="collapse"></a> <a
+						href="#portlet-config" data-toggle="modal" class="config"></a> <a
+						href="javascript:;" class="reload"></a> <a href="javascript:;"
+						class="remove"></a>
+				</div>
+			</div>
+			<div id="content" class="portlet-body flip-scroll">
+				<table id="product_table"
+					class="table-bordered table-striped table-condensed flip-content">
+					<thead class="flip-content">
+						<tr>
+							<th>No</th>
+							<th>Name</th>
+							<th class="numeric">Category</th>
+							<th class="numeric">Description</th>
+							<th class="numeric">Price</th>
+							<th class="numeric">Change</th>
+							<th class="numeric">Delete</th>
+						</tr>
+					</thead>
+					 <?php	$cats; $i = 1; foreach ( $products as $key => $value ) :?>
+					<tbody>
+						<tr>
+							<td>AAC</td>
+							<td><?php echo $value["ProName"]; ?></td>
+							<td value="<?php echo $value['CateID']?>" class="numeric"><?php echo $cats[$value['CateID']]["name"]; ?></td>
+							<td class=""><?php echo $value["ProDesc"]; ?></td>
+							<td class="numeric"><?php echo $value["ProPrice"]; ?></td>
+							<td data-id="<?php echo $value['CateID']?>"><span
+								class="icon-edit"></span></td>
+							<td data-id="<?php echo $value['CateID']?>"><span
+								class="icon-trash"></span></td>
+						</tr>
+					</tbody>
+                       <?php endforeach; ?>
+				</table>
+				<div class="row-fluid">
+					<div class="" id="ajax_paging">
+						<span style="float: right;" class="dataTables_info"
+							id="sample_1_info">Có tất cả <?php echo $count; ?> dòng dữ liệu</span>
                                 <?php echo $pagination; ?>
                         </div>
 
-                    </div>
-                </div>
-                    <?php } ?>
-            </div>
-        </div>
-        <!-- END EXAMPLE TABLE PORTLET-->
-    </div>
+				</div>
+			</div>
+		</div>
+		<?php } ?>
+		<!-- END SAMPLE TABLE PORTLET-->
+	</div>
 </div>
 
 <script>
@@ -261,9 +244,9 @@
 </script>
 
 <style type="text/css">
-    .css {
-        overflow: hidden;
-    }
+.css {
+	overflow: hidden;
+}
 </style>
 
 

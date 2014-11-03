@@ -48,30 +48,12 @@ class  product_m extends MY_Model{
     public function __construct() {
         parent::__construct();
     }
-
-    public function verify_user($username,$password){
-
-        $user = $this->get_by(array(
-			'username' => $username,
-			'password' => md5($password),
-		), FALSE);
-        //var_dump($user);die;
-        if(count($user) == 1) return $user[0];
-        else return false;
-    }
-    function test()
-    {
-        $user = $this->get_by(array(
-			'price' => 0.99 	,
-		), FALSE);
-        return $user;
-    }
-
-    public function get_user($start = 0,$single = FALSE)
-    {
-        if($start != NULL)
-            $this->db->limit(PERPAGA,$start);
-        return parent::get(FALSE,$single);
+    
+    public function show($start = 0){
+    	$this->set_start($start);
+    	$this->db->select('ProID, CateID, ProName, ProPrice, ProStt, ProQuantity,  ProDesc, ProStt2, Categories.name as CateName');
+    	$this->db->join('Categories', 'Product.CateID = Categories.id', 'left');
+    	return $this->get ();
     }
 }
 ?>

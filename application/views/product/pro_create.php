@@ -65,25 +65,6 @@
                         <div class="controls">
                             <input name="title" type="text" class="span6 m-wrap">                            
                         </div>
-                        <label class="control-label">Giá</label>
-                        <div class="controls">
-                            <input name="price" type="number" class="span6 m-wrap">                            
-                        </div>
-                        <label class="control-label">Giảm Giá</label>
-                        <div class="controls">
-                            <input name="discounts" type="number" class="span6 m-wrap">                            
-                        </div>
-                        <label class="control-label">Số lượng</label>
-                        <div class="controls">
-                            <input name="qty" type="number" class="span6 m-wrap">                            
-                        </div>
-                        <label class="control-label">Thời gian bảo hành</label>
-                        <select id="baohanh">
-                        <option value="">Chọn thư mục</option>>
-                        <option id="baohanh1" value="6">6 tháng</option>
-                        <option id="baohanh2" value="12">12 tháng</option>
-                        <option id="baohanh3" value="24">24 tháng</option>
-                        </select>
                         <?php if (!empty($cats)) { ?>
                         <label class="control-label">Thuộc thư mục</label>
                         <div class="controls">
@@ -102,12 +83,6 @@
                     </div>
                     <?php echo $ckediter; ?>
                     <hr class="clearfix">
-                    <label>Thông số kỹ thuật</label>
-                    <div class="row-fluid tab-content" id="content">
-                        <textarea id="demo1" name="demo1"></textarea>
-                    </div>
-                    <?php echo $ckediter1; ?>
-                    <hr class="clearfix"> 
                     <div id="ufile" class="btn-group">
                         <button id="ufile" name="ufile" onclick="BrowseServer()" class="btn blue"><i class="icon-plus"></i> Quản lý ảnh</button>
                     </div>
