@@ -17,10 +17,7 @@ function is_error_flashdata($flashdata) {
 }
 function is_login() {
 	$is_logged = $this->session->userdata ( 'loggedin' );
-	if (isset ( $is_logged ) && $is_logged == true)
-		return true;
-	else
-		return false;
+	return (( $is_logged ) && $is_logged == true)? true:false;
 }
 
 

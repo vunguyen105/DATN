@@ -55,37 +55,48 @@ class product extends Backend_Controller {
 			// var_dump($_POST);die;
 			$post = $this->input->post ();
 			$pro = array (
-					'pro_name' => $post ['title'],
-					'price' => $post ['price'],
-					'discounts' => $post ['discounts'],
-					'baohanh' => $post ['baohanh'],
-					'description' => $post ['descr'],
-					'technique' => $post ['technique'],
-					'cat_id' => $post ['cat'],
-					'qty' => $post ['qty'] 
+					'ProName' => $post ['proname'],
+					'ProPrice' => $post ['price'],
+					'ProQuantity' => $post ['quantity'],
+					'CateID' => $post ['cat'],
+					'ProDesc' => $post ['descr'] 
 			);
-			$this->load->model ( 'product_m' );
-			$this->db->select_max ( 'proid' );
-			$id_max = $this->product_m->get ();
-			// var_dump($id_max);die;
-			if (! empty ( $post ['imgs'] )) {
-				$image = array ();
-				foreach ( $post ['imgs'] as $key => $value ) {
-					$img = array (
-							'file_name' => $value,
-							'id_pro' => ( int ) $id_max [0] ['id'] 
-					);
-					$image [] = $img;
-				}
-				$this->load->model ( 'files_m' );
-				$this->files_m->save ( $image, FALSE, TRUE );
+			$rules = $this->product_m->rules;
+			$this->form_validation->set_rules ( $rules );
+			if ($this->form_validation->run () == TRUE) {
+				$return = $this->product_m->save ( $pro );
+				if ($return)
+					echo json_encode ( array (
+							'msg' => 'insert successfully' 
+					) );
+				die ();
+			} else {
+				echo json_encode ( array (
+						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' 
+				) );
+				die ();
 			}
-			$this->product_m->save ( $pro );
+			// $this->load->model ( 'product_m' );
+			// $this->db->select_max ( 'proid' );
+			// $id_max = $this->product_m->get ();
+			// // var_dump($id_max);die;
+			// if (! empty ( $post ['imgs'] )) {
+			// $image = array ();
+			// foreach ( $post ['imgs'] as $key => $value ) {
+			// $img = array (
+			// 'file_name' => $value,
+			// 'id_pro' => ( int ) $id_max [0] ['id']
+			// );
+			// $image [] = $img;
+			// }
+			// $this->load->model ( 'files_m' );
+			// $this->files_m->save ( $image, FALSE, TRUE );
+			// }
 		} else {
 			$data = array ();
-			$this->template->add_title ( 'Quản lý sản phẩm' );
-			$this->template->write ( 'title', 'Quản lý sản phẩm' );
-			$this->template->write ( 'desption', 'Quản lý sản phẩm' );
+			$this->template->add_title ( 'Product create' );
+			$this->template->write ( 'title', '' );
+			$this->template->write ( 'desption', 'Product create' );
 			$this->load->helper ( array (
 					'url',
 					'editor_helper' 
@@ -96,6 +107,54 @@ class product extends Backend_Controller {
 			$data ['cats'] = $this->category_m->get ();
 			$data ['ckediter'] = $this->ckeditor->replace ( "demo", editerGetEnConfig () );
 			$this->template->write_view ( 'content', 'product/pro_create', $data, true );
+			$this->template->render ();
+		}
+	}
+	public function edit($id) {
+		$data = array ();
+		$data['products'] = $this->product_m->get($id);
+		//var_dump($data['products']);die;
+		//if($id == null || empty($data['products'])) redirect('product/view');
+		
+		if ($this->input->is_ajax_request ()) {
+			// var_dump($_POST);die;
+			$post = $this->input->post ();
+			$pro = array (
+					'ProName' => $post ['proname'],
+					'ProPrice' => $post ['price'],
+					'ProQuantity' => $post ['quantity'],
+					'CateID' => $post ['cat'],
+					'ProDesc' => $post ['descr'] 
+			);
+			$rules = $this->product_m->rules;
+			$this->form_validation->set_rules ( $rules );
+			if ($this->form_validation->run () == TRUE) {
+				$return = $this->product_m->save ( $pro );
+				if ($return)
+					echo json_encode ( array (
+							'msg' => 'insert successfully' 
+					) );
+				die ();
+			} else {
+				echo json_encode ( array (
+						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' 
+				) );
+				die ();
+			}
+		} else {
+			$this->template->add_title ( 'Product edit' );
+			$this->template->write ( 'title', '' );
+			$this->template->write ( 'desption', 'Product edit' );
+			$this->load->helper ( array (
+					'url',
+					'editor_helper' 
+			) );
+			$this->load->model ( 'category_m' );
+			$this->db->order_by ( 'id' );
+			$this->db->where ( 'parent_id <>', 0 );
+			$data ['cats'] = $this->category_m->get ();
+			$data ['ckediter'] = $this->ckeditor->replace ( "demo", editerGetEnConfig () );
+			$this->template->write_view ( 'content', 'product/product_edit', $data, true );
 			$this->template->render ();
 		}
 	}

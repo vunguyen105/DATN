@@ -93,62 +93,14 @@ jQuery(document).on('click', 'table#table_product span.icon-trash', function() {
     jQuery(document).ready(function() {  
         applyPagination();
     });
-    jQuery(document).on('click', 'span.icon-edit', function() { //alert('xxxxxxxx');
-        var id = $(this).parent().attr('data-id');
-        var that = $(this).parent().parent();
-        var username = $(this).parents().prev().prev().prev().prev().text();
-        var email = $(this).parents().prev().prev().prev().text();
-        var text = '<form action="<?php echo base_url() ?>dashboard/user_edit" method="post" id="form_user_edit" class="">';
-        text += '<div class="controls">'
-        text += '<label class="control-label">Tài khoản</label>';
-        text += '<input type="text" name="username" value="'+username+'" class="m-wrap large" placeholder="Tài khoản">'
-        text += '<label class="control-label">Mật khẩu</label>';
-        text += '<input type="password" name="password" class="m-wrap large" placeholder="Mật khẩu">'
-        text += '<label class="control-label">Họ</label>';
-        text += '<input type="text" name="firstname" class="m-wrap large" placeholder="Họ">'
-        text += '<label class="control-label">Tên</label>';
-        text += '<input type="text" name="lastname" class="m-wrap large" placeholder="Tên">'
-        text += '<label class="control-label">Email</label>';
-        text += '<input type="text" name="email" value="'+email+'" class="m-wrap large" placeholder="email">'
-        text += '<label class="control-label">Địa chỉ</label>';
-        text += '<input type="text" name="address" class="m-wrap large" placeholder="Địa chỉ">'
-        text += '<input type="hidden" name="id" value="'+id+'">'
-        text += '</div>'
-        text += '</form>'
-        BootstrapDialog.show({
-            title: 'Tạo tài khoản mới',
-            message: $(text),
-            buttons: [{
-                    label: 'Edit',
-                    cssClass: 'btn green',
-                    hotkey: 13, // Enter.
-                    action: function() {
-                        var form2 = $('form#form_user_edit');
-                        $.ajax({
-                            type: "POST",
-                            data: form2.serialize(),
-                            url: form2.attr('action'),
-                            dataType: 'json',
-                            beforeSend: function() {
-                            },
-                            success: function(data) { 
-                                if (data != false)
-                                {
-                                    that.children('td:first').next().html(data.username);
-                                    that.children('td:first').next().next().html(data.email);
-                                    that.children('td:first').next().next().next().next().html(data.lastname);
-                                    alert('bạn đã update tài khoản thành công');
-                                    BootstrapDialog.closeAll();
+    jQuery(document).on('click', 'span.icon-edit', function() {
+    	var id = $(this).parent().attr('data-id');
+    	window.open(
+    	  '<?php echo base_url('product/edit');?>'+'/'+id,
+    	  '_blank' 
+    	);
 
-                                }
-                                else {
-                                    alert('bạn đã update tài khoản ko thành công');
-                                }
-                            },
-                        });
-                    }
-                }]
-        });
+    	
     });
 
     jQuery(document).on('click', '#create_user', function() { 

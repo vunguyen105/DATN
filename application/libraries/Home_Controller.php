@@ -5,6 +5,7 @@ class Home_Controller extends MY_Controller{
         parent::__construct();        
         $this->load->helper('form');
         $this->load->library('form_validation');
+        $this->load->library('cms_lib');
         $this->load->library('session');
         $this->load->model('admin_m');
     }  

@@ -63,13 +63,14 @@ a, a:hover, a:link, a:active, a:focus {
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-reorder"></i>Product create
+					<i class="icon-reorder"></i>Product edit
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse"></a> <a href="javascript:;"
 						class="remove"></a>
 				</div>
 			</div>
+			<?php if(!empty($products)) { ?>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
 				<form action="" class="horizontal-form">
@@ -78,7 +79,7 @@ a, a:hover, a:link, a:active, a:focus {
 							<div class="control-group">
 								<label class="control-label">Product Name</label>
 								<div class="controls">
-									<input name="proname" type="text" class="m-wrap span12"
+									<input value="<?php echo $products['ProName'];?>" name="proname" type="text" class="m-wrap span12"
 										placeholder="Product Name">
 								</div>
 							</div>
@@ -89,7 +90,7 @@ a, a:hover, a:link, a:active, a:focus {
 							<div class="control-group">
 								<label class="control-label" for="firstName">Quantity</label>
 								<div class="controls">
-									<input name="quantity" type="text" id="quantity" class="m-wrap span12"
+									<input value="<?php echo $products['ProQuantity']?>" name="quantity" type="text" id="quantity" class="m-wrap span12"
 										placeholder="Quantity">
 								</div>
 							</div>
@@ -99,7 +100,7 @@ a, a:hover, a:link, a:active, a:focus {
 							<div class="control-group ">
 								<label class="control-label" for="lastName">Price</label>
 								<div class="controls">
-									<input name="price" type="text" id="price" class="m-wrap span12"
+									<input value="<?php echo $products['ProPrice']?>" name="price" type="text" id="price" class="m-wrap span12"
 										placeholder="Price">
 								</div>
 							</div>
@@ -136,7 +137,7 @@ a, a:hover, a:link, a:active, a:focus {
 						</div>
 						<!--/span-->
 						<div class="row-fluid tab-content" id="content">
-							<textarea id="demo" name="demo"></textarea>
+							<textarea  id="demo" name="demo"><?php echo $products['ProDesc']?></textarea>
 						</div>
                     	<?php echo $ckediter; ?>
 <!-- 						<div id="ufile" class="btn-group"> -->
@@ -160,6 +161,7 @@ a, a:hover, a:link, a:active, a:focus {
 				</form>
 				<!-- END FORM-->
 			</div>
+			<?php } ?>
 		</div>
 	</div>
 </div>

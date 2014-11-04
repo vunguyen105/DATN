@@ -24,7 +24,7 @@ function loadEditer() {
 
 }
 
-function editerGetDefaultConfig() {
+function editerGetEnConfig() {
 
     $config = array(
         "fullPage" => false,
@@ -42,7 +42,7 @@ function editerGetDefaultConfig() {
 }
 
 
-function editerGetEnConfig() {
+function editerGetDefaultConfig() {
 
     $config = array(
         "fullPage" => false,

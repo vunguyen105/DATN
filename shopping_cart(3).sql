@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 03, 2014 at 09:55 PM
+-- Generation Time: Nov 04, 2014 at 09:53 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS `Feedback` (
 
 CREATE TABLE IF NOT EXISTS `Improt` (
   `ImportID` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `ProID` int(11) NOT NULL,
+  `ProID` int(11) unsigned NOT NULL,
   `SizeID` int(10) unsigned NOT NULL,
   PRIMARY KEY (`ImportID`),
   KEY `fk_Improt_Product1_idx` (`ProID`),
@@ -193,7 +193,7 @@ CREATE TABLE IF NOT EXISTS `PayMethod` (
 --
 
 CREATE TABLE IF NOT EXISTS `Product` (
-  `ProID` int(11) NOT NULL,
+  `ProID` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `CateID` int(10) unsigned NOT NULL,
   `ProName` varchar(150) CHARACTER SET ucs2 COLLATE ucs2_unicode_ci NOT NULL,
   `ProPicName` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
@@ -204,7 +204,7 @@ CREATE TABLE IF NOT EXISTS `Product` (
   `ProStt2` int(11) DEFAULT '1',
   PRIMARY KEY (`ProID`),
   KEY `fk_Product_Categories1_idx` (`CateID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `Product`
@@ -214,7 +214,10 @@ INSERT INTO `Product` (`ProID`, `CateID`, `ProName`, `ProPicName`, `ProPrice`, `
 (0, 5, 'Áo thun', 'abc.jpg', 90, 1, NULL, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1),
 (1, 1, 'Quần bò', 'sdsdd.jpg', 100, 1, 0, 'Báo cáo đồ án tốt nghiệp: Xây dựng website bán hàng trực tuyến', 1),
 (22, 10, 'eqweqwe', 'e', 0, 1, 11, 'dấd', 1),
-(24, 10, 'eqweqwe', 'e', 0, 1, 11, 'dấd', 1);
+(24, 10, 'eqweqwe', 'e', 0, 1, 11, 'dấd', 1),
+(25, 11, 'rrrr', '', 232, 1, 11, 'ddfdsfsdf', 1),
+(26, 6, 'sản phẩm 1', '', 100, 1, 1, 'sản phẩm 1 sản phẩm 1', 1),
+(27, 6, 'sản phẩm 1', '', 100, 1, 1, '<h1 style="color: blue;">\n	sản phẩm 1 sản phẩm 1<span style="font-family:lucida sans unicode,lucida grande,sans-serif;"><img alt="" src="http://localhost/DATN/media/123/Images/trietly.jpg" style="width: 400px; height: 399px;" /></span></h1>\n', 1);
 
 -- --------------------------------------------------------
 
@@ -225,7 +228,7 @@ INSERT INTO `Product` (`ProID`, `CateID`, `ProName`, `ProPicName`, `ProPrice`, `
 CREATE TABLE IF NOT EXISTS `ProSize` (
   `ProSizeID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `SizeID` int(10) unsigned NOT NULL,
-  `ProID` int(11) NOT NULL,
+  `ProID` int(11) unsigned NOT NULL,
   PRIMARY KEY (`ProSizeID`),
   KEY `fk_ProSize_Size_idx` (`SizeID`),
   KEY `fk_ProSize_Product1_idx` (`ProID`)
@@ -240,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `ProSize` (
 CREATE TABLE IF NOT EXISTS `Rate` (
   `RateID` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `CusID` int(11) NOT NULL,
-  `ProID` int(11) NOT NULL,
+  `ProID` int(11) unsigned NOT NULL,
   PRIMARY KEY (`RateID`),
   KEY `fk_Rate_Customer1_idx` (`CusID`),
   KEY `fk_Rate_Product1_idx` (`ProID`)
