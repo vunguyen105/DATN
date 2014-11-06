@@ -116,7 +116,7 @@ a, a:hover, a:link, a:active, a:focus {
 									<select name="cat" id="cat" class="m-wrap span12">
 										<option value=''>Select your category</option>
 										<?php  if (!empty($cats)) {  foreach ($cats as $key => $value) { ?>
-										<option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
+										<option value="<?php echo $value['id']; ?>"<?php if($value['id'] == $products['CateID']) echo 'selected="selected';?> "><?php echo $value['name']; ?></option>
 										<?php }} ?>
 									</select>
 								</div>
@@ -153,7 +153,7 @@ a, a:hover, a:link, a:active, a:focus {
 						</div>
 					</div>
 					<div class="form-actions">
-						<button class="btn blue" id="save" type="button">
+						<button class="btn blue" data-ids="<?php echo $products['ProID']?>" id="save" type="button">
 							<i class="icon-ok"></i> Save
 						</button>
 						<button class="btn" type="button">Cancel</button>
@@ -165,10 +165,6 @@ a, a:hover, a:link, a:active, a:focus {
 		</div>
 	</div>
 </div>
-
-
-
-
 
 <script type="text/javascript">
     function BrowseServer()
@@ -204,13 +200,13 @@ a, a:hover, a:link, a:active, a:focus {
         return  false;
     });
     jQuery(document).on('click', "#save", function() {
-        BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm sản phẩm này', function(result) {
+        BootstrapDialog.confirm('Thông báo', 'Bạn muốn sửa phẩm này', function(result) {
             if (result) {
                 var proname = $("input[name='proname']").val(); 
                 var price = $("input[name='price']").val();
                 var quantity = $("input[name='quantity']").val();
                 var cat = $("#cat").val();
-               // var stt = $('#nput[name="stt1"] option:selected').val();
+                var id = $('button#save').attr('data-ids');
                 var objEditor = CKEDITOR.instances["demo"];
                 var descr = objEditor.getData();
                 
@@ -232,9 +228,10 @@ a, a:hover, a:link, a:active, a:focus {
                         quantity: quantity,
                         cat: cat,
                         descr: descr,
+                        id: id,
                     },
                     dataType: 'json',
-                    url: 'product_create',
+                    url: 'product_edit',
                     beforeSend: function() {
                     },
                     success: function(data) { 
@@ -243,11 +240,12 @@ a, a:hover, a:link, a:active, a:focus {
                             message: data.msg,
                             buttons: [{
                                     label: 'OK',
-                                    cssClass: 'btn green',
+                                    cssClass: 'btn-primary',
                                     hotkey: 13, // Enter.
                                     action: function() {
                                         BootstrapDialog.closeAll();
-                                        //local.href = <?php //echo  base_url().'dashboard/product_create'; ?>;
+                                        location.reload(); 
+                                        // local.href = <?php //echo  base_url().'dashboard/product_create'; ?>;
                                     }
                                 }]
                         });

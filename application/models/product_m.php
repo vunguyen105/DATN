@@ -1,7 +1,7 @@
 <?php
 class product_m extends MY_Model {
-	public $table_name = 'product';
-	public $primary_key = 'proid';
+	public $table_name = 'Product';
+	public $primary_key = 'ProID';
 	// protected $_order_by = 'user_id';
 	public $rules = array (
 			'name' => array (

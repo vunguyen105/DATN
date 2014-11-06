@@ -202,9 +202,9 @@ a, a:hover, a:link, a:active, a:focus {
         return  false;
     });
     jQuery(document).on('click', "#save", function() {
-        BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm sản phẩm này', function(result) {
+        BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm sản sản phẩm này', function(result) {
             if (result) {
-                var proname = $("input[name='proname']").val(); 
+            	var proname = $("input[name='proname']").val(); 
                 var price = $("input[name='price']").val();
                 var quantity = $("input[name='quantity']").val();
                 var cat = $("#cat").val();

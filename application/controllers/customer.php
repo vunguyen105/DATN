@@ -1,20 +1,20 @@
 <?php
-class product extends Backend_Controller {
+class customer extends Backend_Controller {
 	function __construct() {
 		parent::__construct ();
-		$this->load->model ( 'product_m' );
+		$this->load->model ( 'customer_m' );
 		$this->load->library ( 'pagination' );
 	}
 	public function view() {
-		$this->template->add_title ( 'Thống kê Sản phẩm' );
-		$this->template->write ( 'title', 'Thống kê Sản phẩm' );
-		$this->template->write ( 'desption', 'Thống kê Sản phẩm' );
-		$config ['base_url'] = base_url () . "product/view?";
+		$this->template->add_title ( 'Thống kê người dùng' );
+		$this->template->write ( 'title', 'Thống kê người dùng' );
+		$this->template->write ( 'desption', 'Thống kê người dùng' );
+		$config ['base_url'] = base_url () . "customer/view?";
 		$config ['per_page'] = PERPAGA;
 		if ($this->input->is_ajax_request ()) {
 			$data ['start'] = ($this->input->get ( 'page' ) == FALSE) ? 0 : ( int ) $this->input->get ( 'page' );
-			$data ['count'] = $config ['total_rows'] = $this->product_m->get ( FALSE, TRUE );
-			$data ['products'] = $this->product_m->show ( $data ['start'] );
+			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
+			$data ['products'] = $this->customer_m->show ( $data ['start'] );
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
 			$ajax = $this->load->view ( 'product/product_ajax_index', $data, true );
@@ -24,7 +24,7 @@ class product extends Backend_Controller {
 			$data ['products'] = $this->product_m->show ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
-			$this->template->write_view ( 'content', 'product/view', $data, true );
+			$this->template->write_view ( 'content', 'customer/view', $data, true );
 			$this->template->render ();
 		}
 	}

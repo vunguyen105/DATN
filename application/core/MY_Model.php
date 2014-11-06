@@ -202,8 +202,11 @@ class MY_Model extends CI_Model {
         } else {
             $this->db->set($data);
             // This is an update
-            if ($where == FALSE) {
-                $filter = $this->primaryFilter;
+            if ($where == FALSE) { //var_dump($id);die;
+            	//is_array($id) || $ids = array($id);
+               // $filter = $this->primaryFilter;
+                //var_dump($id);die;
+                //$id = array_map($filter, $id);
                 $this->db->where($this->primary_key, $id);
             } else {
               //  var_dump($data, $where);
