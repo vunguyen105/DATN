@@ -9,12 +9,11 @@
 		<div class="portlet box green">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-cogs"></i>Flip Scroll
+					<i class="icon-cogs"></i>List Product
 				</div>
 				<div class="tools">
-					<a href="javascript:;" class="collapse"></a> <a
-						href="#portlet-config" data-toggle="modal" class="config"></a> <a
-						href="javascript:;" class="reload"></a> <a href="javascript:;"
+					<a href="javascript:;" class="collapse"></a> 
+					 <a href="javascript:;"
 						class="remove"></a>
 				</div>
 			</div>

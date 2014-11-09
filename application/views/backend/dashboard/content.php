@@ -24,7 +24,5 @@
                       <span><?php echo $this->session->flashdata('info');?></span>
                     </div>
                     <?php }?>
-                Blank page content goes here
-                <a class="btn confirmbutton"><small>Confirm Box</small></a> &nbsp;
         </div>
 </div>

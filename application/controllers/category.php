@@ -8,9 +8,9 @@ class category extends Backend_Controller {
 		$this->new_nested_set = $this->category_lib->category_initialize ();
 	}
 	public function view() {
-		$this->template->add_title ( 'Quản lý thư mục' );
-		$this->template->write ( 'title', 'Quản lý thư mục' );
-		$this->template->write ( 'desption', 'Quản lý thư mục' );
+		$this->template->add_title ( 'Categories' );
+		$this->template->write ( 'title', 'Categories' );
+		$this->template->write ( 'desption', 'Thư mục' );
 		$data ['subs'] = $this->new_nested_set->getChildOfTree ();
 		if (isset ( $data ['subs'] [0] )) {
 			$data ['sub_menu'] = $this->new_nested_set->build_menu ( $data ['subs'] [0] ['id'] );
@@ -134,6 +134,7 @@ class category extends Backend_Controller {
 			die ();
 		}
 	}
+	
 	public function category_load() {
 		if ($this->input->is_ajax_request ()) {
 			$data ['subs'] = $this->new_nested_set->build_sub_menu ();

@@ -14,16 +14,13 @@
     <div class="span6">
         <div class="portlet box yellow">
             <div class="portlet-title">
-                <div class="caption"><i class="icon-comments"></i>Danh sách menu</div>
+                <div class="caption"><i class="icon-reorder"></i>List menu</div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
-                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
                     <a href="javascript:;" class="remove"></a>
                 </div>
                 <div class="actions">
-                    <!--                    <a class="btn green" id="tree_1_collapse"> Collapse All</a>-->
-                    <a class="btn green" id="add-menu"> Thêm menu</a>
+                    <a class="btn green" id="add-menu"> Add new menu</a>
                 </div>
             </div>
             <div class="portlet-body">
@@ -46,11 +43,9 @@
     <div class="span6">
         <div class="portlet box blue">
             <div class="portlet-title">
-                <div class="caption"><i class="icon-comments"></i>Chi tiết menu</div>
+                <div class="caption"><i class="icon-reorder"></i>Detail menu</div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"></a>
-                    <a href="#portlet-config" data-toggle="modal" class="config"></a>
-                    <a href="javascript:;" class="reload"></a>
                     <a href="javascript:;" class="remove"></a>
                 </div>
             </div>
@@ -111,7 +106,7 @@
         var id = $(this).parent().parent().attr('data-id');
         var left = $(this).parent().parent().attr('data-lft');
         var right = $(this).parent().parent().attr('data-rgt');
-        BootstrapDialog.confirm('Thông báo', '', function(result) {
+        BootstrapDialog.confirm('Message', '', function(result) {
             if (result) {
                 $.ajax({
                     type: "POST",
@@ -146,9 +141,9 @@
         // var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="'+name+'" class="m-wrap large" placeholder="tên thư mục"></div>'
         // var html += '<br><a class="btn red" data-toggle="modal" href="#stack3">Launch modal</a></div>';
         // var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" class="m-wrap large" placeholder="tên thư mục"></div>'
-        var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="' + name + '" class="m-wrap large" placeholder="Tên thư mục"></div>'
+        var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="' + name + '" class="m-wrap large" placeholder="Name nemu"></div>'
         BootstrapDialog.show({
-            title: 'Sửa thư mục' + name,
+            title: 'Edit menu ' + name,
             message: $(text),
             buttons: [{
                     label: 'Edit',
@@ -187,9 +182,9 @@
         // var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="'+name+'" class="m-wrap large" placeholder="tên thư mục"></div>'
         // var html += '<br><a class="btn red" data-toggle="modal" href="#stack3">Launch modal</a></div>';
         // var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" class="m-wrap large" placeholder="tên thư mục"></div>'
-        var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="' + name + '" class="m-wrap large" placeholder="Tên thư mục"></div>'
+        var text = '<label class="control-label">Tên thư mục</label><div class="controls"><input type="text" value="' + name + '" class="m-wrap large" placeholder="Name category"></div>'
         BootstrapDialog.show({
-            title: 'Sửa thư mục' + name,
+            title: 'Sửa category ' + name,
             message: $(text),
             buttons: [{
                     label: 'Edit',
@@ -226,9 +221,9 @@
         var right = $(this).parent().parent().attr('data-rgt');
         var name = $(this).parent().next().text();
         var text = '<label class="control-label">Tên thư mục</label>';
-        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Tên thư mục"></div>'
+        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Name category"></div>'
         BootstrapDialog.show({
-            title: 'Thêm thư mục con cho thư mục ' + name,
+            title: 'Add category in ' + name,
             message: $(text),
             buttons: [{
                     label: 'Create',
@@ -262,10 +257,10 @@
     });
 
     jQuery(document).on('click', '#add-menu', function() {
-        var text = '<label class="control-label">Tên menu</label>';
-        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Tên menu"></div>'
+        var text = '<label class="control-label">Name menu</label>';
+        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Name menu"></div>'
         BootstrapDialog.show({
-            title: 'Thêm menu mới',
+            title: 'Add new menu',
             message: $(text),
             buttons: [{
                     label: 'Create',
@@ -296,10 +291,10 @@
         var name = $(this).parent().next().next().text();
         var left_menu = $(this).parent().next().next().attr('data-menu-id');
         var right_menu = $(this).parent().next().next().attr('data-menu-right');
-        var text = '<label class="control-label">Tên thư mục</label>';
-        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Tên thư mục"></div>'
+        var text = '<label class="control-label">Name Category</label>';
+        text += '<div class="controls"><input type="text" class="m-wrap large" placeholder="Name Category"></div>'
         BootstrapDialog.show({
-            title: 'Thêm thư mục cho menu ' + name,
+            title: 'Add category in ' + name,
             message: $(text),
             buttons: [{
                     label: 'Create',
@@ -357,7 +352,7 @@
         var id_menu = $(this).parent().next().next().attr('data-menu-id');
         var left_menu = $(this).parent().next().next().attr('data-menu-left');
         var right_menu = $(this).parent().next().next().attr('data-menu-right');
-        BootstrapDialog.confirm('Thông báo', '', function(result) {
+        BootstrapDialog.confirm('Messege', '', function(result) {
             if (result) {
                 $.ajax({
                     type: "POST",

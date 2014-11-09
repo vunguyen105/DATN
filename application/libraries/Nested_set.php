@@ -1200,6 +1200,92 @@ class Nested_set {
         }
         return $sub;
     }
+    
+    public function build_menu_notID($id, $notID, $IDMenu) {
+    	$nodes = $this->getNodeFromId($id);
+    	$root_nodes = $this->getSubTree($nodes);
+    	$class = array('ol' => 'dd-list', 'li' => 'dd-item', 'div' => 'dd-handle');
+    	$menu = $this->Menu_Bootstrap_notID($id, $root_nodes, $class, $notID, $IDMenu); //var_dump($menu);die;
+    	return $menu;
+    }
+    function Menu_Bootstrap_notID($parentId, $menuData, $class, $notID, $IDMenu) {
+    	$retVal = '';
+    	is_array($notID) || $notID = array($notID);
+    	if (isset($menuData['parents'][$parentId])) {
+    		$retVal = '<ol class="' . $class['ol'] . '" menu-id="' . $IDMenu . '">';
+    
+    		foreach ($menuData['parents'][$parentId] as $itemId) {
+    			if(in_array($itemId, $notID)) continue;
+    			$retVal .= '<li class="' . $class['li'] . '" ' . 'data-lft="' . $menuData['items'][$itemId]['lft'] . '"' . 'data-rgt="' . $menuData['items'][$itemId]['rgt'] . '"' . 'data-id="' . $menuData['items'][$itemId]['id'] . '">';
+    			$retVal .= '<span style="float: right"><p class="btn"><i class="icon-plus"></i> Add Item</p>';
+    
+    
+    			$retVal .='</span>' . '<div class="' . $class['div'] . '">' . $menuData['items'][$itemId][$this->text_column_name];
+    
+    			$retVal .= '</div>';
+    			
+    			$retVal .= $this->Menu_Bootstrap_notID($itemId, $menuData, $class, $notID, $IDMenu);
+    
+    			$retVal .= '</li>';
+    		}
+    
+    		$retVal .= '</ol>';
+    	}
+    
+    	return $retVal;
+    }
+    
+    
+    public function build_menu_category($id, $array, $IDMenu) {
+    	$nodes = $this->getNodeFromId($id);
+    	$root_nodes = $this->getSubTree($nodes);
+    	$class = array('ol' => 'dd-list', 'li' => 'dd-item', 'div' => 'dd-handle');
+    	$menu = $this->Menu_Bootstrap_category($id, $root_nodes, $class, $array, $IDMenu); //var_dump($menu);die;
+    	return $menu;
+    }
+    function Menu_Bootstrap_notID($parentId, $menuData, $class, $array, $IDMenu) {
+    	$retVal = '';
+    	if(!empty($array)){
+    		$retVal = '<ol class="' . $class['ol'] . '" menu-id="' . $IDMenu . '">';
+    		foreach ($array as $k => $v) {
+    			$retVal .= '<li class="' . $class['li'] . '" ' . 'data-lft="' . $menuData['items'][$itemId]['lft'] . '"' . 'data-rgt="' . $menuData['items'][$itemId]['rgt'] . '"' . 'data-id="' . $menuData['items'][$itemId]['id'] . '">';
+    			$retVal .= '<span style="float: right"><p class="btn"><i class="icon-plus"></i> Add Item</p>';
+    			
+    			
+    			$retVal .='</span>' . '<div class="' . $class['div'] . '">' . $menuData['items'][$itemId][$this->text_column_name];
+    			
+    			$retVal .= '</div>';
+    			
+    			$retVal .= $this->Menu_Bootstrap_category($itemId, $menuData, $class, $notID, $IDMenu);
+    			
+    			$retVal .= '</li>';
+    		}
+    		$retVal .= '</ol>';
+    	}
+    	is_array($notID) || $notID = array($notID);
+    	if (isset($menuData['parents'][$parentId])) {
+    		$retVal = '<ol class="' . $class['ol'] . '" menu-id="' . $IDMenu . '">';
+    
+    		foreach ($menuData['parents'][$parentId] as $itemId) {
+    			if(in_array($itemId, $notID)) continue;
+    			$retVal .= '<li class="' . $class['li'] . '" ' . 'data-lft="' . $menuData['items'][$itemId]['lft'] . '"' . 'data-rgt="' . $menuData['items'][$itemId]['rgt'] . '"' . 'data-id="' . $menuData['items'][$itemId]['id'] . '">';
+    			$retVal .= '<span style="float: right"><p class="btn"><i class="icon-plus"></i> Add Item</p>';
+    
+    
+    			$retVal .='</span>' . '<div class="' . $class['div'] . '">' . $menuData['items'][$itemId][$this->text_column_name];
+    
+    			$retVal .= '</div>';
+    			 
+    			$retVal .= $this->Menu_Bootstrap_category($itemId, $menuData, $class, $notID, $IDMenu);
+    
+    			$retVal .= '</li>';
+    		}
+    
+    		$retVal .= '</ol>';
+    	}
+    
+    	return $retVal;
+    }
 
 }
 

@@ -6,9 +6,9 @@ class product extends Backend_Controller {
 		$this->load->library ( 'pagination' );
 	}
 	public function view() {
-		$this->template->add_title ( 'Thống kê Sản phẩm' );
-		$this->template->write ( 'title', 'Thống kê Sản phẩm' );
-		$this->template->write ( 'desption', 'Thống kê Sản phẩm' );
+		$this->template->add_title ( 'All Product' );
+		$this->template->write ( 'title', 'List product' );
+		$this->template->write ( 'desption', 'List product' );
 		$config ['base_url'] = base_url () . "product/view?";
 		$config ['per_page'] = PERPAGA;
 		if ($this->input->is_ajax_request ()) {

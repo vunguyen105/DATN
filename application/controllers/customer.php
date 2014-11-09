@@ -14,14 +14,15 @@ class customer extends Backend_Controller {
 		if ($this->input->is_ajax_request ()) {
 			$data ['start'] = ($this->input->get ( 'page' ) == FALSE) ? 0 : ( int ) $this->input->get ( 'page' );
 			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
-			$data ['products'] = $this->customer_m->show ( $data ['start'] );
+			$this->costomer_m->set_start($data ['start']);
+			$data ['customers'] = $this->customer_m->get ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
-			$ajax = $this->load->view ( 'product/product_ajax_index', $data, true );
+			$ajax = $this->load->view ( 'product/customer_ajax_index', $data, true );
 			echo $ajax;
 		} else {
-			$data ['count'] = $config ['total_rows'] = $this->product_m->get ( FALSE, TRUE );
-			$data ['products'] = $this->product_m->show ();
+			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
+			$data ['customers'] = $this->customer_m->get ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
 			$this->template->write_view ( 'content', 'customer/view', $data, true );
@@ -35,7 +36,7 @@ class customer extends Backend_Controller {
 			$page = $this->input->post ( 'page' );
 			$return = $this->product_m->delete ( $id );
 			if ($return) {
-				$config ['base_url'] = base_url () . "product/view?";
+				$config ['base_url'] = base_url () . "customer/view?";
 				$config ['per_page'] = PERPAGA;
 				$data ['count'] = $config ['total_rows'] = $this->product_m->get ( FALSE, TRUE );
 				$data ['start'] = 0;
@@ -44,7 +45,7 @@ class customer extends Backend_Controller {
 				$data ['products'] = $this->product_m->show ( $data ['start'] );
 				$this->pagination->initialize ( $config );
 				$data ['pagination'] = $this->pagination->create_links ();
-				$ajax = $this->load->view ( 'product/product_ajax_index', $data, true );
+				$ajax = $this->load->view ( 'product/customer_ajax_index', $data, true );
 				echo $ajax;
 			}
 		}

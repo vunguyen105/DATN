@@ -30,7 +30,7 @@
 <body class="login">
 	<!-- BEGIN LOGO -->
 	<div class="logo">
-		<img src="assets/img/logo-big.png" alt="" /> 
+		
 	</div>
 	<!-- END LOGO -->
 	<!-- BEGIN LOGIN -->
