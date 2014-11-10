@@ -47,22 +47,7 @@
 		</div>
 	</div>
 	<div class="span6">
-		<div class="portlet box blue">
-			<div class="portlet-title">
-				<div class="caption">
-					<i class="icon-reorder"></i>Detail menu
-				</div>
-				<div class="tools">
-					<a href="javascript:;" class="collapse"></a> <a href="javascript:;"
-						class="remove"></a>
-				</div>
-			</div>
-			<div class="portlet-body">
-				<div class="dd" id="nestable_list_2">
-                    <?php //if (!empty($sub_menu)) echo $sub_menu; ?>
-                </div>
-			</div>
-		</div>
+		
 	</div>
 	
 </div>
@@ -199,6 +184,7 @@ jQuery(document).on('click', 'div#nestable_list_3 .icon-pencil', function() {
 //             }]
 //     });
      loadMenu(id); 
+     loadmenuview(id)
     // that.remove();
 });
 
@@ -217,6 +203,7 @@ jQuery(document).on('click', 'div#nestable_list_1 span p.btn', function() {
 	     },
 	     success: function(data) {
 	    	 $('div#nestable_list_1').html(data); 
+	    	 loadmenuview(MenuID);
 	     }
 	 });
 });
@@ -225,5 +212,11 @@ function loadMenu(id)
     $.post("category_load_menu_notID", { id: id}, function(data) {
     	$('div#nestable_list_1').html(data);
     });
+}
+function loadmenuview(id)
+{
+	   $.post("show_menu", { id: id}, function(data) {
+	    	$('div#nestable_list_2').html(data);
+	    });
 }
  </script>

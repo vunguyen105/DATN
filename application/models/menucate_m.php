@@ -7,7 +7,7 @@ class menucate_m extends MY_Model {
 	}
 	
 	function getCateMenu($MenuID){
-		$this->db->select('CateID');
+		$this->db->join('Categories','MenuCate.CateID = Categories.id','left');
 		return $this->get_by('MenuID',$MenuID);
 	}
 }
