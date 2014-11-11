@@ -14,14 +14,15 @@ class customer extends Backend_Controller {
 		if ($this->input->is_ajax_request ()) {
 			$data ['start'] = ($this->input->get ( 'page' ) == FALSE) ? 0 : ( int ) $this->input->get ( 'page' );
 			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
-			$this->costomer_m->set_start($data ['start']);
+			$this->customer_m->set_start($data ['start']);
 			$data ['customers'] = $this->customer_m->get ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
-			$ajax = $this->load->view ( 'product/customer_ajax_index', $data, true );
+			$ajax = $this->load->view ( 'product/customer_ajax', $data, true );
 			echo $ajax;
 		} else {
 			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
+			$this->customer_m->set_start();
 			$data ['customers'] = $this->customer_m->get ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
@@ -111,17 +112,15 @@ class customer extends Backend_Controller {
 	}
 	public function edit($id) { 
 		$data = array ();
-		$data['products'] = $this->product_m->get($id);
-		//var_dump($data['products']);die;
-		//if($id == null || empty($data['products'])) redirect('product/view');
+		$data['customers'] = $this->customer_m->get($id);
 		if ($this->input->is_ajax_request ()) {
 			$post = $this->input->post ();
 			$pro = array (
-					'ProName' => $post ['proname'],
-					'ProPrice' => $post ['price'],
-					'ProQuantity' => $post ['quantity'],
-					'CateID' => $post ['cat'],
-					'ProDesc' => $post ['descr'] 
+					'CusUser' => $post ['CusUser'],
+					'CusEmail' => $post ['CusEmail'],
+					'CusName' => $post ['CusName'],
+					'CusPhone' => $post ['CusPhone'],
+					'CusAdd' => $post ['CusAdd'] 
 			);
 			$rules = $this->product_m->rules;
 			$this->form_validation->set_rules ( $rules );

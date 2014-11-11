@@ -94,4 +94,17 @@ class menu extends Backend_Controller {
 			die ();
 		}
 	}
+	
+	public function menu_update() {
+		if ($this->input->is_ajax_request ()) {
+			$post = $this->input->post ();
+			$data = array(
+							'MenuName' => $post['name'],		
+			);
+			$where = array(
+							'MenuID' => $post['id'],
+			);
+			$this->menu_m->save($data, TRUE, FALSE, $where );
+		}
+	}
 }	

@@ -4,29 +4,29 @@ class customer_m extends MY_Model {
 	public $primary_key = 'CusID';
 	// protected $_order_by = 'user_id';
 	public $rules = array (
-			'name' => array (
-					'field' => 'proname',
-					'label' => 'Tên sản phẩm',
+			'CusUser' => array (
+					'field' => 'CusUser',
+					'label' => 'Tài khoản',
 					'rules' => 'trim|required|xss_clean' 
 			),
-			'price' => array (
-					'field' => 'price',
-					'label' => 'Giá',
-					'rules' => 'trim|required|xss_clean|integer' 
+			'CusEmail' => array (
+					'field' => 'CusEmail',
+					'label' => 'Email',
+					'rules' => 'trim|required|email|integer' 
 			),
-			'quantity' => array (
-					'field' => 'quantity',
-					'label' => 'quantity',
+			'CusName' => array (
+					'field' => 'CusName',
+					'label' => 'Họ Tên',
+					'rules' => 'trim|required|xss_clean' 
+			),
+			'CusPhone' => array (
+					'field' => 'CusPhone',
+					'label' => 'Số điện thoại',
 					'rules' => 'trim|required|integer|xss_clean' 
 			),
-			'cat' => array (
-					'field' => 'cat',
-					'label' => 'cat',
-					'rules' => 'trim|required|integer|xss_clean' 
-			),
-			'descr' => array (
-					'field' => 'descr',
-					'label' => 'descr',
+			'CusAdd' => array (
+					'field' => 'CusAdd',
+					'label' => 'Địa chỉ',
 					'rules' => 'required' 
 			) 
 	);

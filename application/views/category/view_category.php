@@ -348,34 +348,6 @@
         });
     });
 
-    jQuery(document).on('click', 'div#nestable_list_3 .icon-trash', function() {
-        var id_menu = $(this).parent().next().next().attr('data-menu-id');
-        var left_menu = $(this).parent().next().next().attr('data-menu-left');
-        var right_menu = $(this).parent().next().next().attr('data-menu-right');
-        BootstrapDialog.confirm('Messege', '', function(result) {
-            if (result) {
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        id: id_menu,
-                        left: left_menu,
-                        right: right_menu
-                    },
-                    url: 'menu_del',
-                    beforeSend: function() {
-                    },
-                    success: function(data) {
-                        $('div#nestable_list_3.dd').html(data);
-                        $('#nestable_list_2').nestable();
-                        loadMenu(1);
-                        BootstrapDialog.closeAll();
-                    }
-                });
-            } else {
-
-            }
-        });
-    });
 
 </script>
 
