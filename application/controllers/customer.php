@@ -18,7 +18,7 @@ class customer extends Backend_Controller {
 			$data ['customers'] = $this->customer_m->get ();
 			$this->pagination->initialize ( $config );
 			$data ['pagination'] = $this->pagination->create_links ();
-			$ajax = $this->load->view ( 'product/customer_ajax', $data, true );
+			$ajax = $this->load->view ( 'customer/customer_ajax', $data, true );
 			echo $ajax;
 		} else {
 			$data ['count'] = $config ['total_rows'] = $this->customer_m->get ( FALSE, TRUE );
@@ -46,7 +46,7 @@ class customer extends Backend_Controller {
 				$data ['products'] = $this->product_m->show ( $data ['start'] );
 				$this->pagination->initialize ( $config );
 				$data ['pagination'] = $this->pagination->create_links ();
-				$ajax = $this->load->view ( 'product/customer_ajax_index', $data, true );
+				$ajax = $this->load->view ( 'customer/customer_ajax_index', $data, true );
 				echo $ajax;
 			}
 		}
@@ -111,6 +111,7 @@ class customer extends Backend_Controller {
 		}
 	}
 	public function edit($id) { 
+		if(empty($id)) redirect('customer/view');
 		$data = array ();
 		$data['customers'] = $this->customer_m->get($id);
 		if ($this->input->is_ajax_request ()) {
@@ -122,10 +123,10 @@ class customer extends Backend_Controller {
 					'CusPhone' => $post ['CusPhone'],
 					'CusAdd' => $post ['CusAdd'] 
 			);
-			$rules = $this->product_m->rules;
+			$rules = $this->customer_m->rules;
 			$this->form_validation->set_rules ( $rules );
 			if ($this->form_validation->run () == TRUE) { 
-				$return = $this->product_m->save( $pro, $post['id']);
+				$return = $this->customer_m->save( $pro, $post['id']);
 				if ($return)
 					echo json_encode ( array (
 							'msg' => 'update successfully' 
@@ -138,16 +139,11 @@ class customer extends Backend_Controller {
 				die ();
 			}
 		} else {
-			$this->template->add_title ( 'Product edit' );
-			$this->template->write ( 'title', '' );
-			$this->template->write ( 'desption', 'Product edit' );
+			$this->template->add_title ( 'Chỉnh sửa tài khoản' );
+			$this->template->write ( 'title', 'Chỉnh sửa tài khoản' );
+			$this->template->write ( 'desption', 'Chỉnh sửa tài khoản' );
 			$this->load->helper ( array ('url','editor_helper') );
-			$this->load->model ( 'category_m' );
-			$this->db->order_by ( 'id' );
-			$this->db->where ( 'parent_id <>', 0 );
-			$data ['cats'] = $this->category_m->get ();
-			$data ['ckediter'] = $this->ckeditor->replace ( "demo", editerGetEnConfig () );
-			$this->template->write_view ( 'content', 'product/product_edit', $data, true );
+			$this->template->write_view ( 'content', 'customer/customer_edit', $data, true );
 			$this->template->render ();
 		}
 	}

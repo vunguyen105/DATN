@@ -2,7 +2,6 @@
 class customer_m extends MY_Model {
 	public $table_name = 'Customer';
 	public $primary_key = 'CusID';
-	// protected $_order_by = 'user_id';
 	public $rules = array (
 			'CusUser' => array (
 					'field' => 'CusUser',
