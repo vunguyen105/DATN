@@ -80,6 +80,7 @@ a, a:hover, a:link, a:active, a:focus {
 								<div class="controls">
 									<input name="proname" type="text" class="m-wrap span12"
 										placeholder="Product Name">
+                                                                        <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -91,6 +92,7 @@ a, a:hover, a:link, a:active, a:focus {
 								<div class="controls">
 									<input name="quantity" type="text" id="quantity" class="m-wrap span12"
 										placeholder="Quantity">
+                                                                        <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -101,6 +103,7 @@ a, a:hover, a:link, a:active, a:focus {
 								<div class="controls">
 									<input name="price" type="text" id="price" class="m-wrap span12"
 										placeholder="Price">
+                                                                        <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -118,6 +121,7 @@ a, a:hover, a:link, a:active, a:focus {
 										<option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
 										<?php }} ?>
 									</select>
+                                                                        <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -236,6 +240,7 @@ a, a:hover, a:link, a:active, a:focus {
                     beforeSend: function() {
                     },
                     success: function(data) { 
+                        
                         BootstrapDialog.show({
                             title: 'Thông báo',
                             message: data.msg,
@@ -249,6 +254,7 @@ a, a:hover, a:link, a:active, a:focus {
                                     }
                                 }]
                         });
+                        appen_error(data.error);
                     }
                 });
             }
@@ -259,4 +265,5 @@ a, a:hover, a:link, a:active, a:focus {
         //$("#standardc").customselect();
     });
 
+    		
 </script>

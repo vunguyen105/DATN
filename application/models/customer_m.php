@@ -6,12 +6,12 @@ class customer_m extends MY_Model {
 			'CusUser' => array (
 					'field' => 'CusUser',
 					'label' => 'Tài khoản',
-					'rules' => 'trim|required|xss_clean' 
+					'rules' => 'trim|required|xss_clean|is_unique[Customer.CusUser]' 
 			),
 			'CusEmail' => array (
 					'field' => 'CusEmail',
 					'label' => 'Email',
-					'rules' => 'trim|required|email|integer' 
+					'rules' => 'trim|required|valid_email|is_unique[Customer.CusEmail]' 
 			),
 			'CusName' => array (
 					'field' => 'CusName',
@@ -21,13 +21,24 @@ class customer_m extends MY_Model {
 			'CusPhone' => array (
 					'field' => 'CusPhone',
 					'label' => 'Số điện thoại',
-					'rules' => 'trim|required|integer|xss_clean' 
+					'rules' => 'trim|required|integer|xss_clean|integer' 
 			),
 			'CusAdd' => array (
 					'field' => 'CusAdd',
 					'label' => 'Địa chỉ',
-					'rules' => 'required' 
+					'rules' => 'trim|required' 
+			),
+                        'CusPass' => array (
+					'field' => 'CusPass',
+					'label' => 'Mật khẩu',
+					'rules' => 'trim|required|' 
+			),
+                        'CusPassC' => array (
+					'field' => 'CusPassC',
+					'label' => 'Mật khẩu confirm',
+					'rules' => 'trim|required|matches[CusPass]' 
 			) 
+                        
 	);
 	public function __construct() {
 		parent::__construct ();

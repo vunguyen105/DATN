@@ -1049,6 +1049,32 @@ if ( ! function_exists('_get_validation_object'))
 	}
 }
 
+/*
+* Validation Error String
+*
+* Returns all the errors associated with a form submission.  This is a helper
+* function for the form validation class.
+*
+* @access	public
+* @param	string
+* @param	string
+* @return	string
+*/
+if ( ! function_exists('validation_errors_array'))
+{
+	function validation_errors_array()
+	{
+		if (FALSE === ($OBJ =& _get_validation_object()))
+		{
+		return '';
+		}
+		
+			return $OBJ->error_array();
+		}
+}
+
+// ------------------------------------------------------------------------
+
 
 /* End of file form_helper.php */
 /* Location: ./system/helpers/form_helper.php */

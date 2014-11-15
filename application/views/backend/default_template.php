@@ -163,6 +163,15 @@
             jQuery(document).ready(function() {
                 App.init();
             });
+        function appen_error(array)
+        {
+            $('div.control-group').removeClass( "error" );
+            $('span.help-block').html('');
+            $.each(array, function(i,item){ 
+                 $("[name="+i+"]").parent().parent().addClass('control-group error');
+                 $("[name="+i+"]").next().html(item);
+            });
+        }   
         </script>
         <!-- END JAVASCRIPTS -->
     </body>

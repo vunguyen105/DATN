@@ -63,16 +63,17 @@ class product extends Backend_Controller {
 			$this->form_validation->set_rules ( $rules );
 			if ($this->form_validation->run () == TRUE) {
 				$return = $this->product_m->save ( $pro );
-				if ($return)
+				if($return)
 					echo json_encode ( array (
 							'msg' => 'insert successfully' 
 					) );
 				die ();
 			} else {
-				echo json_encode ( array (
-						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' 
+                                echo json_encode ( array (
+						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' ,
+                                                'error' => validation_errors_array()
 				) );
-				die ();
+				die;
 			}
 			// $this->load->model ( 'product_m' );
 			// $this->db->select_max ( 'proid' );

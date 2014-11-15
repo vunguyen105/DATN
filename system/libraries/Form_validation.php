@@ -1374,6 +1374,29 @@ class CI_Form_validation {
 	{
 		return str_replace(array('<?php', '<?PHP', '<?', '?>'),  array('&lt;?php', '&lt;?PHP', '&lt;?', '?&gt;'), $str);
 	}
+	
+	/**
+	 * Error Array
+	 *
+	 * Returns the error messages as a string, wrapped in the error delimiters
+	 *
+	 * @access	public
+	 * @param	string
+	 * @param	string
+	 * @return	array
+	 */
+	public function error_array()
+	{
+		// No errrors, validation passes!
+		if (count($this->_error_array) === 0)
+		{
+			return '';
+		}
+		
+		return $this->_error_array;
+	}
+	
+	// --------------------------------------------------------------------
 
 }
 // END Form Validation Class
