@@ -63,7 +63,7 @@ a, a:hover, a:link, a:active, a:focus {
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-reorder"></i>Product create
+					<i class="icon-reorder"></i>Tạo Bài viết mới
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse"></a> <a href="javascript:;"
@@ -76,10 +76,11 @@ a, a:hover, a:link, a:active, a:focus {
 					<div class="row-fluid">
 						<div class="span12 ">
 							<div class="control-group">
-								<label class="control-label">Product Name</label>
+								<label class="control-label">Tiêu đề bài viết</label>
 								<div class="controls">
-									<input name="proname" type="text" class="m-wrap span12"
-										placeholder="Product Name">
+									<input name="NewTitle" type="text" class="m-wrap span12"
+										placeholder="Tiêu đề">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -91,6 +92,7 @@ a, a:hover, a:link, a:active, a:focus {
 								<div class="controls">
 									<input name="quantity" type="text" id="quantity" class="m-wrap span12"
 										placeholder="Quantity">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -101,6 +103,7 @@ a, a:hover, a:link, a:active, a:focus {
 								<div class="controls">
 									<input name="price" type="text" id="price" class="m-wrap span12"
 										placeholder="Price">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -138,13 +141,13 @@ a, a:hover, a:link, a:active, a:focus {
 						<div class="row-fluid tab-content" id="content">
 							<textarea id="demo" name="demo"></textarea>
 						</div>
-                    	<?php echo $ckediter; ?>
-<!-- 						<div id="ufile" class="btn-group"> -->
-<!-- 							<button id="ufile" name="ufile" onclick="BrowseServer()"
-<!--								class="btn blue">
-<!-- 								<i class="icon-plus"></i> Images -->
-<!-- 							</button> -->
-<!-- 						</div> -->
+                                                <?php echo $ckediter; ?>
+ 						<div id="ufile" class="btn-group"> -->
+ 							<button id="ufile" name="ufile" onclick="BrowseServer()"
+								class="btn blue">
+ 								<i class="icon-plus"></i> Images
+ 							</button> 
+ 						</div> 
 						<div class="row-fluid">
 							<ul id="imges" class="listfile isotope" id="medialist"
 								style="position: relative; overflow: hidden;">
@@ -202,17 +205,13 @@ a, a:hover, a:link, a:active, a:focus {
         return  false;
     });
     jQuery(document).on('click', "#save", function() {
-        BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm sản sản phẩm này', function(result) {
+        BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm bài viết này', function(result) {
             if (result) {
-            	var proname = $("input[name='proname']").val(); 
-                var price = $("input[name='price']").val();
-                var quantity = $("input[name='quantity']").val();
-                var cat = $("#cat").val();
-               // var stt = $('#nput[name="stt1"] option:selected').val();
+            	var NewTitle = $("input[name='NewTitle']").val();
                 var objEditor = CKEDITOR.instances["demo"];
-                var descr = objEditor.getData();
+                var NewContent = objEditor.getData();
                 
-                //alert(descr);
+//                alert(NewContent);
 //                 var array_anh = [];
 //                 $('#imges').each(function() {
 //                     var link = '';
@@ -225,14 +224,11 @@ a, a:hover, a:link, a:active, a:focus {
                 $.ajax({
                     type: "POST",
                     data: {
-                    	proname: proname,
-                        price: price,
-                        quantity: quantity,
-                        cat: cat,
-                        descr: descr,
+                    	NewTitle: NewTitle,
+                        NewContent: NewContent
                     },
                     dataType: 'json',
-                    url: 'product_create',
+                    url: 'news_create',
                     beforeSend: function() {
                     },
                     success: function(data) { 
@@ -249,14 +245,11 @@ a, a:hover, a:link, a:active, a:focus {
                                     }
                                 }]
                         });
+                        appen_error(data.error);
                     }
                 });
             }
         });
 
     });
-    jQuery(document).ready(function() {
-        //$("#standardc").customselect();
-    });
-
 </script>
