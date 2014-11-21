@@ -56,27 +56,25 @@ class news extends Backend_Controller {
 	public function news_create() {
 		if ($this->input->is_ajax_request ()) {
 			$post = $this->input->post ();
-			$pro = array (
-					'ProName' => $post ['proname'],
-					'ProPrice' => $post ['price'],
-					'ProQuantity' => $post ['quantity'],
-					'CateID' => $post ['cat'],
-					'ProDesc' => $post ['descr'] 
+			$insert = array (
+					'NewTitle' => $post ['NewTitle'],
+					'NewContent' => $post ['NewContent']
 			);
 			$rules = $this->news_m->rules;
-			$this->form_validation->set_rules ( $rules );
+			$this->form_validation->set_rules($rules);
 			if ($this->form_validation->run () == TRUE) {
-				$return = $this->news_m->save ( $pro );
+				$return = $this->news_m->save ( $insert );
 				if ($return)
 					echo json_encode ( array (
-							'msg' => 'insert successfully' 
+							'msg' => 'Thêm bài viết mới thành công' 
 					) );
 				die ();
 			} else {
 				echo json_encode ( array (
-						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' 
+						'msg' => 'Chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' ,
+                                                'error' => validation_errors_array()
 				) );
-				die ();
+				die;
 			}
 			// $this->load->model ( 'news_m' );
 			// $this->db->select_max ( 'proid' );
@@ -108,7 +106,7 @@ class news extends Backend_Controller {
 			$this->db->where ( 'parent_id <>', 0 );
 			$data ['cats'] = $this->category_m->get ();
 			$data ['ckediter'] = $this->ckeditor->replace ( "demo", editerGetEnConfig () );
-			$this->template->write_view ( 'content', 'news/pro_create', $data, true );
+			$this->template->write_view ( 'content', 'news/new_create', $data, true );
 			$this->template->render ();
 		}
 	}
