@@ -88,9 +88,9 @@ a, a:hover, a:link, a:active, a:focus {
 					<div class="row-fluid">
 						<div class="span6 ">
 							<div class="control-group">
-								<label class="control-label" for="firstName">Quantity</label>
+								<label class="control-label" for="firstName">Nguồn tin tức</label>
 								<div class="controls">
-									<input name="quantity" type="text" id="quantity" class="m-wrap span12"
+									<input name="NewSource" type="text" id="NewSource" class="m-wrap span12"
 										placeholder="Quantity">
                                                                          <span class="help-block"></span>
 								</div>
@@ -99,10 +99,15 @@ a, a:hover, a:link, a:active, a:focus {
 						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group ">
-								<label class="control-label" for="lastName">Price</label>
+								<label class="control-label" for="lastName">Mô tả</label>
 								<div class="controls">
+<<<<<<< Updated upstream:application/views/news/pro_create.php
 									<input name="price" type="text" id="price" class="m-wrap span12"
 										placeholder="Price">
+=======
+									<input name="price" type="text" id="NewDesc" class="m-wrap span12"
+										placeholder="NewDesc">
+>>>>>>> Stashed changes:application/views/news/new_create.php
                                                                          <span class="help-block"></span>
 								</div>
 							</div>

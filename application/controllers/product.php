@@ -5,7 +5,12 @@ class product extends Backend_Controller {
 		$this->load->model ( 'product_m' );
 		$this->load->library ( 'pagination' );
 	}
-	public function view() {
+        
+        public function index() {
+                $this->view();
+        }
+
+        public function view() {
 		$this->template->add_title ( 'All Product' );
 		$this->template->write ( 'title', 'List product' );
 		$this->template->write ( 'desption', 'List product' );
@@ -63,39 +68,40 @@ class product extends Backend_Controller {
 			$this->form_validation->set_rules ( $rules );
 			if ($this->form_validation->run () == TRUE) {
 				$return = $this->product_m->save ( $pro );
-				if($return)
+                                if($return) {
+                                    if (! empty ( $post ['imgs'] ) && is_numeric($return)) {    
+                                        $image = array ();
+                                        foreach ( $post ['imgs'] as $key => $value ) {
+                                            $img = array (
+                                            'FileName' => $value,
+                                            'ProID' => $return
+                                            );
+                                            $image [] = $img;
+                                        }
+                                        
+                                        $this->load->model('file_m');
+                                        $this->file_m->save ( $image, FALSE, TRUE );
+//                                        
 					echo json_encode ( array (
-							'msg' => 'insert successfully' 
+							'msg' => 'Thêm sản phẩm thành công' 
 					) );
-				die ();
-			} else {
-                                echo json_encode ( array (
-						'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' ,
-                                                'error' => validation_errors_array()
-				) );
-				die;
-			}
-			// $this->load->model ( 'product_m' );
-			// $this->db->select_max ( 'proid' );
-			// $id_max = $this->product_m->get ();
-			// // var_dump($id_max);die;
-			// if (! empty ( $post ['imgs'] )) {
-			// $image = array ();
-			// foreach ( $post ['imgs'] as $key => $value ) {
-			// $img = array (
-			// 'file_name' => $value,
-			// 'id_pro' => ( int ) $id_max [0] ['id']
-			// );
-			// $image [] = $img;
-			// }
-			// $this->load->model ( 'files_m' );
-			// $this->files_m->save ( $image, FALSE, TRUE );
-			// }
+                                        die;
+                                    }
+                                }
+				
+                        }
+                        else {
+                                        echo json_encode ( array (
+                                                        'msg' => 'chưa nhập dữ liệu nhập vào hoặc nhập sai dữ liệu' ,
+                                                        'error' => validation_errors_array()
+                                        ) );
+                                        die;
+			}	 
 		} else {
 			$data = array ();
-			$this->template->add_title ( 'Product create' );
+			$this->template->add_title ( 'Tạo sản phẩm mới' );
 			$this->template->write ( 'title', '' );
-			$this->template->write ( 'desption', 'Product create' );
+			$this->template->write ( 'desption', 'Tạo sản phẩm mới' );
 			$this->load->helper ( array (
 					'url',
 					'editor_helper' 

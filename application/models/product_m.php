@@ -21,7 +21,7 @@ class product_m extends MY_Model {
 			),
 			'cat' => array (
 					'field' => 'cat',
-					'label' => 'cat',
+					'label' => 'category',
 					'rules' => 'trim|required|integer|xss_clean' 
 			),
 			'descr' => array (
