@@ -88,6 +88,12 @@ class product extends Backend_Controller {
                                         die;
                                     }
                                 }
+                                else {
+                                    echo json_encode ( array (
+							'msg' => 'Thêm sản phẩm thất bại' 
+					) );
+                                        die;
+                                }
 				
                         }
                         else {
