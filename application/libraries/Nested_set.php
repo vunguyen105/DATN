@@ -1276,7 +1276,6 @@ class Nested_set {
     			$retVal .= '<li class="' . $class['li'] . '" ' . 'data-lft="' . $menuData['items'][$itemId]['lft'] . '"' . 'data-rgt="' . $menuData['items'][$itemId]['rgt'] . '"' . 'data-id="' . $menuData['items'][$itemId]['id'] . '">';
     			$retVal .= '<span style="float: right">';
     	
-    	
     			$retVal .='</span>' . '<div class="' . $class['div'] . '">' . $menuData['items'][$itemId][$this->text_column_name];
     	
     			$retVal .= '</div>';
@@ -1291,7 +1290,64 @@ class Nested_set {
     	
     	return $retVal;
     }
+    
+    public function category_fronend($id, $array, $IDMenu, $cateInMenu) {
+    	$nodes = $this->getNodeFromId($id);
+    	$root_nodes = $this->getSubTree($nodes);
+    	$class = array('ol' => 'dd-list', 'li' => 'dd-item', 'div' => 'dd-handle');
+    	$menu = $this->Menu_category_fronend($root_nodes, $class, $array, $IDMenu, $cateInMenu); //var_dump($menu);die;
+    	return $menu;
+    }
+    function Menu_category_fronend($menuData, $class, $array, $IDMenu, $cateInMenu) {
+    	$retVal = '';           // var_dump($cateInMenu);die;
+    	if(!empty($array)){
+    		foreach ($cateInMenu as $k => $v) {                
+                        $retVal .= '<div class="panel panel-default" menu-id="' . $IDMenu . '">';
+                        $retVal .= '<div class="panel-heading">';
+                        $retVal .= '<h4 class="panel-title">';
+                        $retVal .= '<a data-toggle="collapse" data-parent="#accordian" href="#'.$v['name'].'">';
+                        $retVal .= '<span class="badge pull-right"><i class="fa fa-plus"></i></span>';
+                        $retVal .= $v['name'];
+                        $retVal .= '</a>';
+                        $retVal .= '</h4>';
+                        $retVal .= '</div>';
+                        $retVal .= '</div>';
+                        $retVal .= $this->Menu_category_fronend2($v['CateID'], $menuData, $class, $array, $IDMenu, $v['name']);
 
+
+    		}
+    		
+    	}
+    	return $retVal;
+    }
+    
+    function Menu_category_fronend2($parentId, $menuData, $class, $array, $IDMenu, $name) {
+    	$retVal = ''; 
+    	is_array($array) || $notID = array($array);
+    	if (isset($menuData['parents'][$parentId])) {
+    		$retVal .= '<div id="'.$name.'" class="panel-collapse collapse">';
+		$retVal .= '<div class="panel-body">';
+                $retVal .= '<ul>';
+    		foreach ($menuData['parents'][$parentId] as $itemId) {
+    			if(in_array($itemId, $array)) continue;
+    			//$retVal .= '<li class="' . $class['li'] . '" ' . 'data-lft="' . $menuData['items'][$itemId]['lft'] . '"' . 'data-rgt="' . $menuData['items'][$itemId]['rgt'] . '"' . 'data-id="' . $menuData['items'][$itemId]['id'] . '">';
+    			//$retVal .= '<span style="float: right">';
+                        $retVal .= '<li><a href="#">'.$menuData['items'][$itemId][$this->text_column_name].'</a></li>';
+    			//$retVal .='</span>' . '<div class="' . $class['div'] . '">' . $menuData['items'][$itemId][$this->text_column_name];
+    	
+    			//$retVal .= '</div>';
+    	
+    			//$retVal .= $this->Menu_Bootstrap_category2($itemId, $menuData, $class, $array, $IDMenu);
+    	
+    			$retVal .= '</li>';
+    		}
+                $retVal .= '</ul>';
+                $retVal .= '</div>';
+                $retVal .= '</div>';
+    	}
+    	
+    	return $retVal;
+    }
 }
 
 ?>
