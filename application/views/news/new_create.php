@@ -88,10 +88,10 @@ a, a:hover, a:link, a:active, a:focus {
 					<div class="row-fluid">
 						<div class="span6 ">
 							<div class="control-group">
-								<label class="control-label" for="firstName">Nguồn tin tức</label>
+								<label class="control-label" for="NewSource">Nguồn tin tức</label>
 								<div class="controls">
 									<input name="NewSource" type="text" id="NewSource" class="m-wrap span12"
-										placeholder="Quantity">
+										placeholder="Nguồn bài viết">
                                                                          <span class="help-block"></span>
 								</div>
 							</div>
@@ -99,15 +99,10 @@ a, a:hover, a:link, a:active, a:focus {
 						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group ">
-								<label class="control-label" for="lastName">Mô tả</label>
+								<label class="control-label">Mô tả</label>
 								<div class="controls">
-<<<<<<< Updated upstream:application/views/news/pro_create.php
-									<input name="price" type="text" id="price" class="m-wrap span12"
-										placeholder="Price">
-=======
-									<input name="price" type="text" id="NewDesc" class="m-wrap span12"
-										placeholder="NewDesc">
->>>>>>> Stashed changes:application/views/news/new_create.php
+									<input name="NewDesc" type="text" class="m-wrap span12"
+										placeholder="Mô tả">
                                                                          <span class="help-block"></span>
 								</div>
 							</div>
@@ -116,20 +111,6 @@ a, a:hover, a:link, a:active, a:focus {
 					</div>
 					<!--/row-->
 					<div class="row-fluid">
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">Category</label>
-								<div class="controls">
-									<select name="cat" id="cat" class="m-wrap span12">
-										<option value=''>Select your category</option>
-										<?php  if (!empty($cats)) {  foreach ($cats as $key => $value) { ?>
-										<option value="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></option>
-										<?php }} ?>
-									</select>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group">
 								<label class="control-label">status</label>
@@ -148,7 +129,7 @@ a, a:hover, a:link, a:active, a:focus {
 						</div>
                                                 <?php echo $ckediter; ?>
  						<div id="ufile" class="btn-group"> -->
- 							<button id="ufile" name="ufile" onclick="BrowseServer()"
+ 							<button type="button" id="ufile" name="ufile" onclick="BrowseServer()"
 								class="btn blue">
  								<i class="icon-plus"></i> Images
  							</button> 
@@ -213,24 +194,26 @@ a, a:hover, a:link, a:active, a:focus {
         BootstrapDialog.confirm('Thông báo', 'Bạn muốn thêm bài viết này', function(result) {
             if (result) {
             	var NewTitle = $("input[name='NewTitle']").val();
+                var NewDesc = $("input[name='NewDesc']").val();
                 var objEditor = CKEDITOR.instances["demo"];
                 var NewContent = objEditor.getData();
                 
 //                alert(NewContent);
-//                 var array_anh = [];
-//                 $('#imges').each(function() {
-//                     var link = '';
-//                     $(this).find('li').each(function() {
-//                         var current = $(this);
-//                         var link = current.children('a').attr('data-link');
-//                         array_anh.push(link);
-//                     });
-//                 });
+                 var array_anh = [];
+                 $('#imges').each(function() {
+                     var link = '';
+                     $(this).find('li').each(function() {
+                         var current = $(this);
+                         var link = current.children('a').attr('data-link');
+                         array_anh.push(link);
+                     });
+                 });
                 $.ajax({
                     type: "POST",
                     data: {
                     	NewTitle: NewTitle,
-                        NewContent: NewContent
+                        NewContent: NewContent,
+                        NewDesc: NewDesc
                     },
                     dataType: 'json',
                     url: 'news_create',
