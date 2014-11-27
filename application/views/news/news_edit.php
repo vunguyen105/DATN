@@ -63,24 +63,25 @@ a, a:hover, a:link, a:active, a:focus {
 		<div class="portlet box blue">
 			<div class="portlet-title">
 				<div class="caption">
-					<i class="icon-reorder"></i>Product edit
+					<i class="icon-reorder"></i>Chỉnh sửa bài viết
 				</div>
 				<div class="tools">
 					<a href="javascript:;" class="collapse"></a> <a href="javascript:;"
 						class="remove"></a>
 				</div>
 			</div>
-			<?php if(!empty($products)) { ?>
+			<?php if(!empty($news)) { ?>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
 				<form action="" class="horizontal-form">
 					<div class="row-fluid">
 						<div class="span12 ">
 							<div class="control-group">
-								<label class="control-label">Product Name</label>
+								<label class="control-label">Tiêu đề bài viết</label>
 								<div class="controls">
-									<input value="<?php echo $products['ProName'];?>" name="proname" type="text" class="m-wrap span12"
-										placeholder="Product Name">
+									<input name="NewTitle" type="text" class="m-wrap span12"
+										value="<?php echo $news['NewTitle']?>">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -88,20 +89,22 @@ a, a:hover, a:link, a:active, a:focus {
 					<div class="row-fluid">
 						<div class="span6 ">
 							<div class="control-group">
-								<label class="control-label" for="firstName">Quantity</label>
+								<label class="control-label" for="NewSource">Nguồn tin tức</label>
 								<div class="controls">
-									<input value="<?php echo $products['ProQuantity']?>" name="quantity" type="text" id="quantity" class="m-wrap span12"
-										placeholder="Quantity">
+									<input name="NewSource" type="text" id="NewSource" class="m-wrap span12"
+										value="<?php echo $news['NewSource']?>">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
 						<!--/span-->
 						<div class="span6 ">
 							<div class="control-group ">
-								<label class="control-label" for="lastName">Price</label>
+								<label class="control-label" for="NewDesc">Mô tả</label>
 								<div class="controls">
-									<input value="<?php echo $products['ProPrice']?>" name="price" type="text" id="price" class="m-wrap span12"
-										placeholder="Price">
+									<input name="NewDesc" type="text" id="NewDesc" class="m-wrap span12"
+										value="<?php echo $news['NewDesc']?>">
+                                                                         <span class="help-block"></span>
 								</div>
 							</div>
 						</div>
@@ -111,21 +114,7 @@ a, a:hover, a:link, a:active, a:focus {
 					<div class="row-fluid">
 						<div class="span6 ">
 							<div class="control-group">
-								<label class="control-label">Category</label>
-								<div class="controls">
-									<select name="cat" id="cat" class="m-wrap span12">
-										<option value=''>Select your category</option>
-										<?php  if (!empty($cats)) {  foreach ($cats as $key => $value) { ?>
-										<option value="<?php echo $value['id']; ?>"<?php if($value['id'] == $products['CateID']) echo 'selected="selected';?> "><?php echo $value['name']; ?></option>
-										<?php }} ?>
-									</select>
-								</div>
-							</div>
-						</div>
-						<!--/span-->
-						<div class="span6 ">
-							<div class="control-group">
-								<label class="control-label">status</label>
+								<label class="control-label">Status</label>
 								<div class="controls">
 									<label class="radio"> <input type="radio" name="stt1"
 										value="0" /> Off
@@ -137,15 +126,15 @@ a, a:hover, a:link, a:active, a:focus {
 						</div>
 						<!--/span-->
 						<div class="row-fluid tab-content" id="content">
-							<textarea  id="demo" name="demo"><?php echo $products['ProDesc']?></textarea>
+							<textarea id="demo" name="demo"><?php echo $news['NewDesc']?></textarea>
 						</div>
-                    	<?php echo $ckediter; ?>
-<!-- 						<div id="ufile" class="btn-group"> -->
-<!-- 							<button id="ufile" name="ufile" onclick="BrowseServer()"
-<!--								class="btn blue">
-<!-- 								<i class="icon-plus"></i> Images -->
-<!-- 							</button> -->
-<!-- 						</div> -->
+                                                <?php echo $ckediter; ?>
+ 						<div id="ufile" class="btn-group">
+ 							<button type="button" id="ufile" name="ufile" onclick="BrowseServer()"
+								class="btn blue">
+ 								<i class="icon-plus"></i> Images
+ 							</button> 
+ 						</div> 
 						<div class="row-fluid">
 							<ul id="imges" class="listfile isotope" id="medialist"
 								style="position: relative; overflow: hidden;">
@@ -153,7 +142,7 @@ a, a:hover, a:link, a:active, a:focus {
 						</div>
 					</div>
 					<div class="form-actions">
-						<button class="btn blue" data-ids="<?php echo $products['ProID']?>" id="save" type="button">
+						<button class="btn blue" id="save" type="button">
 							<i class="icon-ok"></i> Save
 						</button>
 						<button class="btn" type="button">Cancel</button>
