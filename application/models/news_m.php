@@ -7,14 +7,19 @@
         }
         
         public $rules = array (
-			'name' => array (
+			'NewTitle' => array (
 					'field' => 'NewTitle',
 					'label' => 'Tiêu đề',
 					'rules' => 'trim|required|xss_clean' 
 			),
-			'price' => array (
+			'NewContent' => array (
 					'field' => 'NewContent',
 					'label' => 'Nội dung',
+					'rules' => 'trim|required|xss_clean' 
+			),
+			'NewDesc' => array (
+					'field' => 'NewDesc',
+					'label' => 'Mô tả',
 					'rules' => 'trim|required|xss_clean' 
 			)
 	);
