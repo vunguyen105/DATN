@@ -140,14 +140,10 @@ class news extends Backend_Controller {
 				die ();
 			}
 		} else {
-			$this->template->add_title ( 'news edit' );
+			$this->template->add_title ( 'Chỉnh sửa bài viết' );
 			$this->template->write ( 'title', '' );
-			$this->template->write ( 'desption', 'news edit' );
+			$this->template->write ( 'desption', 'Chỉnh sửa bài viết' );
 			$this->load->helper ( array ('url','editor_helper') );
-			$this->load->model ( 'category_m' );
-			$this->db->order_by ( 'id' );
-			$this->db->where ( 'parent_id <>', 0 );
-			$data ['cats'] = $this->category_m->get ();
 			$data ['ckediter'] = $this->ckeditor->replace ( "demo", editerGetEnConfig () );
 			$this->template->write_view ( 'content', 'news/news_edit', $data, true );
 			$this->template->render ();
