@@ -62,7 +62,8 @@ class product extends Backend_Controller {
 					'ProPrice' => $post ['price'],
 					'ProQuantity' => $post ['quantity'],
 					'CateID' => $post ['cat'],
-					'ProDesc' => $post ['descr'] 
+					'ProDesc' => $post ['descr'],
+                                        'ProStt' => $post ['stt'],
 			);
 			$rules = $this->product_m->rules;
 			$this->form_validation->set_rules ( $rules );
