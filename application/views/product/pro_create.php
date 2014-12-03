@@ -1,8 +1,6 @@
 <script src="<?php echo base_url(); ?>assets/dialog/run_prettify.js"></script>
 <link href="<?php echo base_url(); ?>assets/dialog/bootstrap-dialog.css" rel="stylesheet" type="text/css" />
 <script src="<?php echo base_url(); ?>assets/dialog/bootstrap-dialog.js"></script>
-<script src="<?php echo base_url() ?>assets/customselect/jquery-customselect.js"></script>
-<link href="<?php echo base_url() ?>assets/customselect/jquery-customselect.css" rel="stylesheet" />
 <style>
 .mediamgr_content {
 	margin-right: 250px;
@@ -68,7 +66,7 @@ a, a:hover, a:link, a:active, a:focus {
 			</div>
 			<div class="portlet-body form">
 				<!-- BEGIN FORM-->
-				<form action="" class="horizontal-form">
+				<form action="" class="horizontal-form" id="pro_create">
 					<div class="row-fluid">
 						<div class="span12 ">
 							<div class="control-group">
@@ -212,8 +210,8 @@ a, a:hover, a:link, a:active, a:focus {
             	var proname = $("input[name='proname']").val(); 
                 var price = $("input[name='price']").val();
                 var quantity = $("input[name='quantity']").val();
+                var stt = $("input[name='stt1']:checked").val();
                 var cat = $("#cat").val();
-               // var stt = $('#nput[name="stt1"] option:selected').val();
                 var objEditor = CKEDITOR.instances["demo"];
                 var descr = objEditor.getData();
                 
@@ -236,6 +234,7 @@ a, a:hover, a:link, a:active, a:focus {
                         cat: cat,
                         descr: descr,
                         imgs: array_anh,
+                        stt: stt
                     },
                     dataType: 'json',
                     url: 'product_create',
