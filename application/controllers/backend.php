@@ -22,10 +22,10 @@ class backend extends MY_Controller {
 			$username = $this->input->post ( 'username' );
 			$password = $this->input->post ( 'password' );
 			if ($this->admin_m->verify_user ( $username, $password ) == TRUE) {
-				$this->session->set_flashdata ( 'success', 'login successfully!' );
+				$this->session->set_flashdata ( 'success', 'Đăng nhập thành công!' );
 				redirect ( $admin );
 			} else {
-				$this->session->set_flashdata ( 'error', 'That usersname/password combination does not exist' );
+				$this->session->set_flashdata ( 'error', 'Tài khoản hoặc mật khẩu không hợp lệ' );
 				redirect ( 'backend/login', 'refresh' );
 			}
 		}
